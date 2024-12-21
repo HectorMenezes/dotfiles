@@ -1,18 +1,19 @@
 [core]
-	editor = nvim
+    editor = nvim
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [alias]
     ps = push
-	ci = commit
-	ss = status
-	cp = cherry-pick
-	amend = commit --amend
-	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
-	addi = add -i
-	addu = add -u
-	co = switch
-    dgh = "!f() { git diff --stat $(git merge-base \"$1\" \"$2\") \"$2\";}; f"
+    ci = commit
+    ss = status
+    cp = cherry-pick
+    amend = commit --amend
+    graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+    addi = add -i
+    addu = add -u
+    co = switch
+    ghs = "!f() { git diff --stat $(git merge-base "$1" "$2") "$2";}; f"
+    ghd = "!f() { git diff $(git merge-base "$1" "$2") "$2";}; f"
 [user]
-	email = hector.menezes@gmail.com
-	name = Hector Menezes
+    email = hector.menezes@gmail.com
+    name = Hector Menezes
