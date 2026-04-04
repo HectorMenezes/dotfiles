@@ -12,7 +12,8 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use({ 'rose-pine/neovim', as = 'rose-pine' , config = function() vim.cmd('colorscheme rose-pine') end})
+    -- use({ 'rose-pine/neovim', as = 'rose-pine' , config = function() vim.cmd('colorscheme rose-pine') end})
+    use({ 'nyngwang/nvimgelion', as = 'nvimgelion' })
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('theprimeagen/harpoon')
@@ -22,28 +23,19 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-    -- install without yarn or npm
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-    use {'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
-	    -- LSP Support
-	    {'neovim/nvim-lspconfig'},             -- Required
-	    {					   -- Optinal
-		    'williamboman/mason.nvim',
-		    run = function()
-			    pcall(vim.cmd, 'MasonUpdate')
-		    end,
-	    },
-	    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    -- LSP
+    use { 'neovim/nvim-lspconfig' }
+    use {
+        'williamboman/mason.nvim',
+        run = function() pcall(vim.cmd, 'MasonUpdate') end,
+    }
+    use { 'williamboman/mason-lspconfig.nvim' }
 
-	    -- Autocompletion
-	    {'hrsh7th/nvim-cmp'},     -- Required
-	    {'hrsh7th/cmp-nvim-lsp'}, -- Required
-	    {'L3MON4D3/LuaSnip'},     -- Required
-    }}
+    -- Autocompletion
+    use { 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'L3MON4D3/LuaSnip' }
     -- java	
     use 'mfussenegger/nvim-dap'
     use 'mfussenegger/nvim-jdtls'
@@ -58,6 +50,12 @@ return require('packer').startup(function(use)
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp"
         }
+    }
+    -- Claude Code
+    use { 'folke/snacks.nvim' }
+    use {
+        'coder/claudecode.nvim',
+        requires = { 'folke/snacks.nvim' },
     }
 end)
 
